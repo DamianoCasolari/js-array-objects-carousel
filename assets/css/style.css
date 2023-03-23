@@ -3,7 +3,9 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-
+:root {
+    --cr-light: white;
+}
 
 /* background zone  */
 
@@ -20,7 +22,7 @@
 }
 
 .container_description {
-    text-shadow: 0px 4px 8px black ;
+    text-shadow: 0px 4px 8px black;
 }
 
 .opacity_0 {
@@ -34,27 +36,32 @@
 
 i {
     filter: drop-shadow(2px 0px 5px black);
+    
 }
 
 .btn_carousel {
     font-size: 60px;
-    color: rgba(252, 252, 252, 0.451);
     font-weight: bold;
     position: absolute;
     bottom: 50%;
     transform: translatey(50%);
     z-index: 1;
     margin: 0 30px;
+    color: rgba(252, 252, 252, 0.451);
+
+}
+
+.btn_left i, .btn_right i {
     transition-duration: 0.4s;
-
+    color: rgba(252, 252, 252, 0.451);
 }
 
-.btn_left:hover {
-    color: white;
+.btn_left i:hover {
+    color: var(--cr-light);
 }
 
-.btn_right:hover {
-    color: white;
+.btn_right i:hover {
+    color: var(--cr-light);
 }
 
 /* thumbnail carousel  */
@@ -90,6 +97,25 @@ i {
 
 *.img_background:not(.active) {
     display: none;
+}
+
+/* btn_media  */
+
+.stop_btn, .play_btn, .reverse_btn {
+    color: rgba(252, 252, 252, 0.451);
+}
+
+.container_media>button>i {
+    font-size: 30px;
+    transition-duration: 0.4s;
+}
+
+.container_media>button>i:hover {
+    color: var(--cr-light);
+}
+
+.light_press {
+    color: white;
 }
 
 /* ANIMATION */
