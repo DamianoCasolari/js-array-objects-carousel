@@ -24,6 +24,10 @@
 
 }
 
+.opacity_0 {
+    opacity: 0;
+}
+
 /* CAROUSEL */
 
 
@@ -35,7 +39,7 @@ i {
 
 .btn_carousel {
     font-size: 60px;
-    color: rgba(66, 65, 65, 0.888);
+    color: rgba(252, 252, 252, 0.451);
     font-weight: bold;
     position: absolute;
     bottom: 50%;
@@ -65,12 +69,17 @@ i {
 
 .thumbnail {
     width: calc(100% / 5);
-    height: 100px;
     transition-duration: 1s;
+    filter: drop-shadow(2px 0px 5px black);
+    cursor: pointer;
+    
 }
 
 .thumbnail > img {
-    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    
+    object-fit: cover;
 }
 
 .thumbnail:hover {
