@@ -4,14 +4,8 @@
 }
 
 
-/* card zone  */
 
-.card {
-    filter: drop-shadow(3px 7px 7px black);
-}
-
-
-/* Video zone  */
+/* background zone  */
 
 .img_background {
     position: fixed;
@@ -20,8 +14,13 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    text-align: center;
     z-index: -2;
 
+}
+
+.container_description {
+    text-shadow: 0px 4px 8px black ;
 }
 
 .opacity_0 {
@@ -46,44 +45,47 @@ i {
     transform: translatey(50%);
     z-index: 1;
     margin: 0 30px;
+    transition-duration: 0.4s;
 
 }
 
 .btn_left:hover {
-    animation: move_left 1s linear infinite;
+    color: white;
 }
 
 .btn_right:hover {
-    animation: move_right 1s linear infinite;
+    color: white;
 }
 
 /* thumbnail carousel  */
-
-.shadow {
-    filter: brightness(60%);
-}
 
 .my_container {
     height: 100vh;
 }
 
 .thumbnail {
-    width: calc(100% / 5);
+    width: 20%;
     transition-duration: 1s;
-    filter: drop-shadow(2px 0px 5px black);
+    filter: drop-shadow(0px -4px 8px black);
     cursor: pointer;
-    
+
 }
 
-.thumbnail > img {
+.thumbnail>img {
     max-width: 100%;
     height: 100%;
-    
     object-fit: cover;
+    border-radius: 5%;
 }
 
-.thumbnail:hover {
-    transform: translatey(-15%);
+.container_thumbnail .thumbnail:hover {
+    transform: scale(1.1);
+    filter: brightness(100%);
+}
+
+*.thumbnail:not(.shadow) {
+    filter: brightness(30%);
+    
 }
 
 *.img_background:not(.active) {
@@ -120,5 +122,3 @@ i {
         opacity: 1;
     }
 }
-
-

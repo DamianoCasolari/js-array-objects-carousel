@@ -25,19 +25,21 @@
 </head>
 
 <body>
-    <div class="my_container container-xl text-center">
-        <img src="./assets/img/01.webp" class="img_background active" alt="copertina">
+    <div class="my_container container-fluid text-center">
+        <div class="container_description text-start position-fixed top-0 start-0 text-white m-5">
+            <h1 class="title_movie">ciao </h1>
+            <p class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae, dolor.</p>
+        </div>
+        <img src="./assets/img/03.webp" class="img_background active" alt="copertina">
         <div class="d-flex align-items-end justify-content-center h-100">
-            
-            
-                <button class="btn_carousel btn_left border-0 bg-transparent start-0"><i class="fa fa-chevron-left"
-                        aria-hidden="true"></i></button>
-                <button class="btn_carousel btn_right border-0 bg-transparent end-0"><i class="fa fa-chevron-right"
-                        aria-hidden="true"></i></button>
-            <div class="container_thumbnail w-75 d-flex p-5">
-           
+            <button class="btn_carousel btn_left border-0 bg-transparent start-0"><i class="fa fa-chevron-left"
+                    aria-hidden="true"></i></button>
+            <button class="btn_carousel btn_right border-0 bg-transparent end-0"><i class="fa fa-chevron-right"
+                    aria-hidden="true"></i></button>
+            <div class="container_thumbnail w-100 d-none d-sm-flex p-5">
+
             </div>
-            
+
         </div>
     </div>
     <script src="./assets/js/main.js"></script>

@@ -22,28 +22,57 @@ const images = [
     }
 ];
 const containerThumbnailEl = document.querySelector(".container_thumbnail")
+const containerImgBackground = document.querySelector(".my_container")
+const titleMovieEl = document.querySelector(".title_movie")
+const descriptionEl = document.querySelector(".description")
+const btnLeft = document.querySelector(".btn_left")
+const btnRight = document.querySelector(".btn_right")
+let counterActive = 0;
+let arrayElementBackGroud = []
+let arrayElementThumbnail = []
 
-
-
-createThumbnail(containerThumbnailEl,images);
+createThumbnailAndBackground(containerThumbnailEl, images, containerImgBackground);
 
 
 // -------FUNZIONI 
 
 /**
- * Create thumbnails
+ * Create thumbnails and Main Img
  * @param {object} containerThumbnailEl Dom object container_thumbnail
  * @param {array} images array of object with info of images
+ * @param {object} containerImgBackground Dom object container_thumbnail
  */
-function createThumbnail(containerThumbnailEl,images) {
-    const arrayElementDom = images.forEach((object, index) => {
-        let SingleElementDom = `<div class="thumbnail p-1"> 
+function createThumbnailAndBackground(containerThumbnailEl, images, containerImgBackground) {
+    images.forEach((object, index) => {
+
+        // create Thumbnails
+        let classshadowEl = index == counterActive ? "shadow" : "";
+        let SingleElementThumbNail = `<div class="thumbnail p-2 ${classshadowEl}"> 
                 <img src="./assets/${object.image}" alt="Thumbnail_${object.title}">
             </div>`
-        containerThumbnailEl.innerHTML += SingleElementDom;
+        containerThumbnailEl.innerHTML += SingleElementThumbNail;
+        // create Background
+        let classEl = index == counterActive ? "active" : "";
+        let SingleElementBackground = `<img src="./assets/img/01.webp" class=" ${classEl} img_background" alt="${object.title}">`
+        containerImgBackground.insertAdjacentHTML("beforeend", SingleElementBackground)
 
+        // add description main img 
+        if (index == counterActive) {
+            titleMovieEl.innerHTML = object.title;
+            descriptionEl.innerHtml = object.text;
+        }
     })
 }
+
+function BtnRight(){
+    
+}
+
+
+
+
+
+
 
 
 
