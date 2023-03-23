@@ -46,7 +46,7 @@ clickThumbnail();
 // add autoplay
 let variableAutoplayFunction = setInterval(autoplay, 8000);
 
-//add media button
+//add media buttons
 stopBtnEl.addEventListener("click", (e) => {
     stopBtnEl.classList.add("light_press")
     stopBtnEl.nextElementSibling.classList.remove("light_press")
@@ -60,10 +60,17 @@ playBtnEl.addEventListener("click", (e) => {
     variableAutoplayFunction = setInterval(autoplay, 8000);
 })
 
+let direction = true;
+
 reverseBtnEl.addEventListener("click", function () {
     reverseBtnEl.classList.toggle("light_press")
-    // clearInterval(variableAutoplayFunction)
-    // setInterval(reverse, 8000)
+    direction = !direction;
+    clearInterval(variableAutoplayFunction)
+    if(direction == false) {
+        variableAutoplayFunction = setInterval(reverse,8000)
+    } else {
+        variableAutoplayFunction = setInterval(autoplay, 8000)
+    }
 })
 
 // add event listener to button left and right
