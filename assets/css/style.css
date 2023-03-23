@@ -1,0 +1,115 @@
+/* General selector  */
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+/* card zone  */
+
+.card {
+    filter: drop-shadow(3px 7px 7px black);
+}
+
+
+/* Video zone  */
+
+.img_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -2;
+
+}
+
+/* CAROUSEL */
+
+
+/* btn carousel  */
+
+i {
+    filter: drop-shadow(2px 0px 5px black);
+}
+
+.btn_carousel {
+    font-size: 60px;
+    color: rgba(66, 65, 65, 0.888);
+    font-weight: bold;
+    position: absolute;
+    bottom: 50%;
+    transform: translatey(50%);
+    z-index: 1;
+    margin: 0 30px;
+
+}
+
+.btn_left:hover {
+    animation: move_left 1s linear infinite;
+}
+
+.btn_right:hover {
+    animation: move_right 1s linear infinite;
+}
+
+/* thumbnail carousel  */
+
+.shadow {
+    filter: brightness(60%);
+}
+
+.my_container {
+    height: 100vh;
+}
+
+.thumbnail {
+    width: calc(100% / 5);
+    height: 100px;
+    transition-duration: 1s;
+}
+
+.thumbnail > img {
+    width: 100%;
+}
+
+.thumbnail:hover {
+    transform: translatey(-15%);
+}
+
+*.img_background:not(.active) {
+    display: none;
+}
+
+/* ANIMATION */
+
+@keyframes move_left {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+
+    }
+}
+
+@keyframes move_right {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
