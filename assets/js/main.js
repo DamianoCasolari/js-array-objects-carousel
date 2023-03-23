@@ -28,10 +28,104 @@ const descriptionEl = document.querySelector(".description")
 const btnLeft = document.querySelector(".btn_left")
 const btnRight = document.querySelector(".btn_right")
 let counterActive = 0;
-let arrayElementBackGroud = []
-let arrayElementThumbnail = []
 
+
+// Show images, info  and thumbnails 
 createThumbnailAndBackground(containerThumbnailEl, images, containerImgBackground);
+
+//create array background and thumbnail
+const totalBackground = document.querySelectorAll(".img_background")
+const totalThumbnails = document.querySelectorAll(".thumbnail")
+
+// add event listener to button left and right 
+btnRight.addEventListener("click", () => {
+
+    // reset active 
+    let current_background = totalBackground[counterActive]
+    current_background.classList.remove("active")
+    //reset shadow on thumbnail
+    let current_thumbanail = totalThumbnails[counterActive]
+    current_thumbanail.classList.remove("shadow")
+
+    // condition of loop 
+    // counterActive = counterActive > totalBackground.length - 1 ? 0 : counterActive++;
+    if (counterActive > totalBackground.length - 2) {
+        counterActive = 0;
+    } else {
+        counterActive++
+    }
+    console.log(counterActive);
+
+    // new img 
+    let new_current_background = totalBackground[counterActive]
+    console.log(new_current_background);
+    new_current_background.classList.add("active")
+    // new thumbnail
+    let new_current_thumbanail = totalThumbnails[counterActive]
+    new_current_thumbanail.classList.add("shadow")
+    // new description 
+    titleMovieEl.innerHTML = images[counterActive].title;
+    descriptionEl.innerHtml = images[counterActive].text;
+
+})
+
+btnLeft.addEventListener("click", () => {
+
+    // reset active 
+    let current_background = totalBackground[counterActive]
+    current_background.classList.remove("active")
+
+    //reset shadow on thumbnail
+    let current_thumbanail = totalThumbnails[counterActive]
+    current_thumbanail.classList.remove("shadow")
+
+    // condiction for loop 
+    if (counterActive <= 0) {
+        counterActive = totalBackground.length - 2;
+    } else {
+        counterActive--
+    }
+    console.log(counterActive);
+
+    // new img 
+    let new_current_background = totalBackground[counterActive]
+    new_current_background.classList.add("active")
+
+    // new thumbnail
+    let new_current_thumbanail = totalThumbnails[counterActive]
+    new_current_thumbanail.classList.add("shadow")
+
+    // new description 
+    titleMovieEl.innerHTML = images[counterActive].title;
+    descriptionEl.innerHtml = images[counterActive].text;
+
+})
+
+// add possibility of click thumbNails 
+
+for (let index = 0; index < totalThumbnails.length; index++) {
+    const element = totalThumbnails[index];
+    element.addEventListener("click", function () {
+        // change the illuminated thumbnail
+        let thumbnailWithShadow = document.querySelector(".shadow")
+        thumbnailWithShadow.classList.remove("shadow")
+        this.classList.add("shadow")
+        // change the image background
+        let BackgroundlWithActive = document.querySelector(".active")
+        BackgroundlWithActive.classList.remove("active")
+        totalBackground[index].classList.add("active")  //perchè?
+        // change description
+        titleMovieEl.innerHTML = images[index].title;
+        descriptionEl.innerHtml = images[index].text;
+
+    })
+
+
+// add autoplay
+ 
+
+
+}
 
 
 // -------FUNZIONI 
@@ -47,13 +141,15 @@ function createThumbnailAndBackground(containerThumbnailEl, images, containerImg
 
         // create Thumbnails
         let classshadowEl = index == counterActive ? "shadow" : "";
-        let SingleElementThumbNail = `<div class="thumbnail p-2 ${classshadowEl}"> 
+        let SingleElementThumbNail = `
+            <div class="thumbnail p-2 ${classshadowEl}"> 
                 <img src="./assets/${object.image}" alt="Thumbnail_${object.title}">
             </div>`
-        containerThumbnailEl.innerHTML += SingleElementThumbNail;
+        containerThumbnailEl.insertAdjacentHTML("beforeend", SingleElementThumbNail)
+
         // create Background
         let classEl = index == counterActive ? "active" : "";
-        let SingleElementBackground = `<img src="./assets/img/01.webp" class=" ${classEl} img_background" alt="${object.title}">`
+        let SingleElementBackground = `<img src="./assets/${object.image}" class=" ${classEl} img_background" alt="${object.title}">`
         containerImgBackground.insertAdjacentHTML("beforeend", SingleElementBackground)
 
         // add description main img 
@@ -62,10 +158,6 @@ function createThumbnailAndBackground(containerThumbnailEl, images, containerImg
             descriptionEl.innerHtml = object.text;
         }
     })
-}
-
-function BtnRight(){
-    
 }
 
 

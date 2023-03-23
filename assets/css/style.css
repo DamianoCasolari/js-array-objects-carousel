@@ -79,13 +79,13 @@ i {
 }
 
 .container_thumbnail .thumbnail:hover {
-    transform: scale(1.1);
+    transform: scale(1);
     filter: brightness(100%);
 }
 
 *.thumbnail:not(.shadow) {
     filter: brightness(30%);
-    
+    transform: scale(0.9);
 }
 
 *.img_background:not(.active) {
