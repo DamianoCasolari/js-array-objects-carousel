@@ -33,107 +33,60 @@ const playBtnEl = document.querySelector(".play_btn")
 const reverseBtnEl = document.querySelector(".reverse_btn")
 
 
-// Show images, info  and thumbnails 
+// create images, info  and thumbnails element in DOM 
 createThumbnailAndBackground(containerThumbnailEl, images, containerImgBackground);
 
-//create array background and thumbnail
+//create Variable of Array background and thumbnail
 const totalBackground = document.querySelectorAll(".img_background")
 const totalThumbnails = document.querySelectorAll(".thumbnail")
 
 //I make the thumbnails clickable
 clickThumbnail();
 
-// add autoplay
-let variableAutoplayFunction = setInterval(autoplay, 8000);
+// add autoplay since opening the page
+let variableAutoplayFunction = setInterval(turnToTheRight, 8000);
 
-//add media buttons
+//create media buttons to control autoplay
+
+//add stop button
 stopBtnEl.addEventListener("click", (e) => {
     stopBtnEl.classList.add("light_press")
     stopBtnEl.nextElementSibling.classList.remove("light_press")
     clearInterval(variableAutoplayFunction)
 })
 
+// add play button 
 playBtnEl.addEventListener("click", (e) => {
     playBtnEl.previousElementSibling.classList.remove("light_press")
     playBtnEl.classList.add("light_press")
     clearInterval(variableAutoplayFunction)
-    variableAutoplayFunction = setInterval(autoplay, 8000);
+
+    if (reverseBtnEl.classList.contains("light_press")) {
+        variableAutoplayFunction = setInterval(turnToTheLeft, 8000)
+    } else {
+        variableAutoplayFunction = setInterval(turnToTheRight, 8000);
+    }
 })
 
+// add reverse button 
 let direction = true;
-
 reverseBtnEl.addEventListener("click", function () {
     reverseBtnEl.classList.toggle("light_press")
     direction = !direction;
     clearInterval(variableAutoplayFunction)
-    if(direction == false) {
-        variableAutoplayFunction = setInterval(reverse,8000)
-    } else {
-        variableAutoplayFunction = setInterval(autoplay, 8000)
+    if (!stopBtnEl.classList.contains("light_press")) {
+        if (direction == false) {
+            variableAutoplayFunction = setInterval(turnToTheLeft, 8000)
+        } else {
+            variableAutoplayFunction = setInterval(turnToTheRight, 8000)
+        }
     }
 })
 
 // add event listener to button left and right
-btnRight.addEventListener("click", () => {
-    // reset active 
-    let current_background = totalBackground[counterActive]
-    current_background.classList.remove("active")
-    //reset shadow on thumbnail
-    let current_thumbanail = totalThumbnails[counterActive]
-    current_thumbanail.classList.remove("shadow")
+btnRight.addEventListener("click", () => turnToTheRight())
 
-    // condition of loop 
-    // counterActive = counterActive > totalBackground.length - 2 ? 0 : counterActive++;
-    if (counterActive > totalBackground.length - 2) {
-        counterActive = 0;
-    } else {
-        counterActive++
-    }
-
-    // new img 
-    let new_current_background = totalBackground[counterActive]
-    console.log(new_current_background);
-    new_current_background.classList.add("active")
-    // new thumbnail
-    let new_current_thumbanail = totalThumbnails[counterActive]
-    new_current_thumbanail.classList.add("shadow")
-    // new description 
-    titleMovieEl.innerHTML = images[counterActive].title;
-    descriptionEl.innerText = images[counterActive].text;
-
-})
-
-btnLeft.addEventListener("click", () => {
-
-    // reset active 
-    let current_background = totalBackground[counterActive]
-    current_background.classList.remove("active")
-
-    //reset shadow on thumbnail
-    let current_thumbanail = totalThumbnails[counterActive]
-    current_thumbanail.classList.remove("shadow")
-
-    // condiction for loop 
-    if (counterActive <= 0) {
-        counterActive = totalBackground.length - 2;
-    } else {
-        counterActive--
-    }
-
-    // new img 
-    let new_current_background = totalBackground[counterActive]
-    new_current_background.classList.add("active")
-
-    // new thumbnail
-    let new_current_thumbanail = totalThumbnails[counterActive]
-    new_current_thumbanail.classList.add("shadow")
-
-    // new description 
-    titleMovieEl.innerHTML = images[counterActive].title;
-    descriptionEl.innerText = images[counterActive].text;
-
-})
-
+btnLeft.addEventListener("click", () => turnToTheLeft())
 
 
 // -------FUNCTION
@@ -194,16 +147,16 @@ function clickThumbnail() {
 }
 
 /**
- * create function for an autoplay of 8 seconds
+ * create function for turn to right
  */
-function autoplay() {
+function turnToTheRight() {
     // reset active 
     let current_background = totalBackground[counterActive]
     current_background.classList.remove("active")
     //reset shadow on thumbnail
     let current_thumbanail = totalThumbnails[counterActive]
     current_thumbanail.classList.remove("shadow")
-
+    // counterActive = counterActive > totalBackground.length - 2 ? 0 : counterActive++;
     // condition of loop 
     if (counterActive > totalBackground.length - 2) {
         counterActive = 0;
@@ -222,7 +175,10 @@ function autoplay() {
     descriptionEl.innerText = images[counterActive].text;
 }
 
-function reverse() {
+/**
+ * create function for turn to left
+ */
+function turnToTheLeft() {
     // reset active 
     let current_background = totalBackground[counterActive]
     current_background.classList.remove("active")
@@ -233,7 +189,7 @@ function reverse() {
 
     // condiction for loop 
     if (counterActive <= 0) {
-        counterActive = totalBackground.length - 2;
+        counterActive = totalBackground.length - 1;
     } else {
         counterActive--
     }
